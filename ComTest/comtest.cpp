@@ -18,3 +18,8 @@ void ComTest::on_pushButton_clicked()
 {
     this->close();
 }
+
+void ComTest::on_pushButton_2_clicked()
+{
+    ui->pushButton_2->
+}
