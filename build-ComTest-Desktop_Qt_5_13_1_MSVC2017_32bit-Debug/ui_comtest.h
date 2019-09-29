@@ -14,6 +14,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +24,8 @@ class Ui_ComTest
 {
 public:
     QWidget *centralwidget;
+    QTextBrowser *textBrowser;
+    QTextEdit *textEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -32,9 +36,16 @@ public:
         ComTest->resize(800, 600);
         centralwidget = new QWidget(ComTest);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        textBrowser = new QTextBrowser(centralwidget);
+        textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
+        textBrowser->setGeometry(QRect(20, 20, 631, 311));
+        textEdit = new QTextEdit(centralwidget);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(20, 350, 631, 201));
         ComTest->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ComTest);
         menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setGeometry(QRect(0, 0, 800, 26));
         ComTest->setMenuBar(menubar);
         statusbar = new QStatusBar(ComTest);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
