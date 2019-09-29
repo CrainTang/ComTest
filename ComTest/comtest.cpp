@@ -10,6 +10,6 @@ ComTest::ComTest(QWidget *parent)
 
 ComTest::~ComTest()
 {
-    delete ui;
+    delete ui;//
 }
 
