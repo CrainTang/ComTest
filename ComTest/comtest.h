@@ -15,6 +15,11 @@ public:
     ComTest(QWidget *parent = nullptr);
     ~ComTest();
 
+private slots:
+    void on_textBrowser_anchorClicked(const QUrl &arg1);
+
+    void on_pushButton_clicked();
+
 private:
     Ui::ComTest *ui;
 };

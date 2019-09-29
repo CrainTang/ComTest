@@ -13,3 +13,8 @@ ComTest::~ComTest()
     delete ui;
 }
 
+
+void ComTest::on_pushButton_clicked()
+{
+    this->close();
+}
