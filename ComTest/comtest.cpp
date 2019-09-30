@@ -122,7 +122,7 @@ void ComTest::on_sendButton_clicked()
 {
     //获取界面上的数据并转换成utf8格式的字节流
     QByteArray data = ui->sendTextEdit->toPlainText().toUtf8();
-    serial.write(data);
+    serial.write(data);//这是分支合并实验
 
 }
 void ComTest::on_clearButton_clicked()

@@ -1,7 +1,7 @@
 #ifndef COMTEST_H
 #define COMTEST_H
 
-#include <QMainWindow>
+#include <QMainWindow>//
 #include "qDebug.h"						  // 调试输出用
 #include <QSerialPort>         // 提供访问串口的功能
 #include <QSerialPortInfo>     // 提供系统中存在的串口的信息
