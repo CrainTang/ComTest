@@ -7,7 +7,7 @@
 #include <QSerialPortInfo>     // 提供系统中存在的串口的信息
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class ComTest; }
+namespace Ui { class ComTest; }//
 QT_END_NAMESPACE
 
 class ComTest : public QMainWindow
