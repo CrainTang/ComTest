@@ -114,7 +114,7 @@ void ComTest::on_openButton_clicked()
 
         ui->openButton->setText(QString("打开串口"));
         //发送按键失能
-        ui->sendButton->setEnabled(false);
+        ui->sendButton->setEnabled(false);//
     }
 }
 
