@@ -5,7 +5,7 @@
 #include "qDebug.h"						  // 调试输出用
 #include <QSerialPort>         // 提供访问串口的功能
 #include <QSerialPortInfo>     // 提供系统中存在的串口的信息
-
+#include <QMetaType>
 QT_BEGIN_NAMESPACE
 namespace Ui { class ComTest; }//
 QT_END_NAMESPACE
@@ -35,7 +35,7 @@ private slots:
 
 private:
     Ui::ComTest *ui;
-    QSerialPort serial;
+    QSerialPort *serial;
 
 };
 #endif // COMTEST_H

@@ -39,7 +39,7 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QTextEdit *recvTextEdit;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QLabel *label;
     QComboBox *portNameBox;
@@ -51,6 +51,7 @@ public:
     QComboBox *ParityBox;
     QLabel *label_7;
     QComboBox *stopBitsBox;
+    QComboBox *send_state;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -94,28 +95,28 @@ public:
         recvTextEdit = new QTextEdit(centralwidget);
         recvTextEdit->setObjectName(QString::fromUtf8("recvTextEdit"));
         recvTextEdit->setGeometry(QRect(20, 50, 631, 301));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(900, 34, 164, 241));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(900, 34, 164, 241));
+        gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        portNameBox = new QComboBox(widget);
+        portNameBox = new QComboBox(layoutWidget);
         portNameBox->setObjectName(QString::fromUtf8("portNameBox"));
 
         gridLayout->addWidget(portNameBox, 0, 1, 1, 1);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout->addWidget(label_2, 1, 0, 1, 1);
 
-        baudrateBox = new QComboBox(widget);
+        baudrateBox = new QComboBox(layoutWidget);
         baudrateBox->addItem(QString());
         baudrateBox->addItem(QString());
         baudrateBox->addItem(QString());
@@ -123,40 +124,45 @@ public:
 
         gridLayout->addWidget(baudrateBox, 1, 1, 1, 1);
 
-        label_5 = new QLabel(widget);
+        label_5 = new QLabel(layoutWidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         gridLayout->addWidget(label_5, 2, 0, 1, 1);
 
-        dataBitsBox = new QComboBox(widget);
+        dataBitsBox = new QComboBox(layoutWidget);
         dataBitsBox->addItem(QString());
         dataBitsBox->setObjectName(QString::fromUtf8("dataBitsBox"));
 
         gridLayout->addWidget(dataBitsBox, 2, 1, 1, 1);
 
-        label_6 = new QLabel(widget);
+        label_6 = new QLabel(layoutWidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
         gridLayout->addWidget(label_6, 3, 0, 1, 1);
 
-        ParityBox = new QComboBox(widget);
+        ParityBox = new QComboBox(layoutWidget);
         ParityBox->addItem(QString());
         ParityBox->setObjectName(QString::fromUtf8("ParityBox"));
 
         gridLayout->addWidget(ParityBox, 3, 1, 1, 1);
 
-        label_7 = new QLabel(widget);
+        label_7 = new QLabel(layoutWidget);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
         gridLayout->addWidget(label_7, 4, 0, 1, 1);
 
-        stopBitsBox = new QComboBox(widget);
+        stopBitsBox = new QComboBox(layoutWidget);
         stopBitsBox->addItem(QString());
         stopBitsBox->addItem(QString());
         stopBitsBox->setObjectName(QString::fromUtf8("stopBitsBox"));
 
         gridLayout->addWidget(stopBitsBox, 4, 1, 1, 1);
 
+        send_state = new QComboBox(centralwidget);
+        send_state->addItem(QString());
+        send_state->addItem(QString());
+        send_state->setObjectName(QString::fromUtf8("send_state"));
+        send_state->setGeometry(QRect(780, 290, 87, 22));
         ComTest->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ComTest);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -197,6 +203,9 @@ public:
         label_7->setText(QCoreApplication::translate("ComTest", "\345\201\234\346\255\242\344\275\215 \357\274\232", nullptr));
         stopBitsBox->setItemText(0, QCoreApplication::translate("ComTest", "1", nullptr));
         stopBitsBox->setItemText(1, QCoreApplication::translate("ComTest", "2", nullptr));
+
+        send_state->setItemText(0, QCoreApplication::translate("ComTest", "string", nullptr));
+        send_state->setItemText(1, QCoreApplication::translate("ComTest", "hex", nullptr));
 
     } // retranslateUi
 

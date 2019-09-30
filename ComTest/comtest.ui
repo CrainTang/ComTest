@@ -148,7 +148,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>900</x>
@@ -248,6 +248,26 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QComboBox" name="send_state">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>290</y>
+      <width>87</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>string</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>hex</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
