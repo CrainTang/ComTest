@@ -7,7 +7,7 @@ ComTest::ComTest(QWidget *parent)
 {
     ui->setupUi(this);
     //连接信号和槽
-        QObject::connect(&serial, &QSerialPort::readyRead, this, &ComTest::serialPort_readyRead);
+        //QObject::connect(&serial, &QSerialPort::readyRead, this, &ComTest::serialPort_readyRead);
 
         //发送按键失能
         ui->sendButton->setEnabled(false);
@@ -114,7 +114,7 @@ void ComTest::on_openButton_clicked()
 
         ui->openButton->setText(QString("打开串口"));
         //发送按键失能
-        ui->sendButton->setEnabled(false);
+        ui->sendButton->setEnabled(false);//
     }
 }
 
