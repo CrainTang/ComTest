@@ -223,6 +223,7 @@ Makefile: ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_config.prf \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32-msvc\qmake.conf \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds.prf \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-version.conf \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\toolchain.prf \
@@ -247,8 +248,10 @@ Makefile: ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\yacc.prf \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\lex.prf \
 		..\ComTest\ComTest.pro \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5PrintSupport.prl \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Widgets.prl \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Gui.prl \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5SerialPort.prl \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Core.prl \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\qtmain.prl
 	$(QMAKE) -o Makefile ..\ComTest\ComTest.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -398,6 +401,7 @@ Makefile: ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_config.prf:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32-msvc\qmake.conf:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_post.prf:
+.qmake.stash:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds.prf:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-version.conf:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\toolchain.prf:
@@ -422,8 +426,10 @@ Makefile: ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\yacc.prf:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\lex.prf:
 ..\ComTest\ComTest.pro:
+..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5PrintSupport.prl:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Widgets.prl:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Gui.prl:
+..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5SerialPort.prl:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Core.prl:
 ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\qtmain.prl:
 qmake: FORCE

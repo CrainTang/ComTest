@@ -1,8 +1,9 @@
+LIBS += -L"D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib" -lqwtd
+LIBS += -L"D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib" -lqwt
+INCLUDEPATH += D:\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt
 QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-CONFIG += c++11
+QT       += serialport  # 串口库
+QT += widgets printsupport
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
