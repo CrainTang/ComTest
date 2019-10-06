@@ -6,14 +6,10 @@ ComTest::ComTest(QWidget *parent)
     , ui(new Ui::ComTest)
 {
     ui->setupUi(this);
-    serial = new QSerialPort();
-    //连接信号和槽
-        //connect(serial, &QSerialPort::readyRead, this, &ComTest::serialPort_readyRead);
-
-        //发送按键失能
-        ui->sendButton->setEnabled(false);
-        //波特率默认选择下拉第三项：9600
-        ui->baudrateBox->setCurrentIndex(2);
+    this->setWindowTitle("简易频谱仪");
+    ui->qwtPlot->setTitle("频谱");
+    ui->sendButton->setEnabled(false);//发送按键失能
+    ui->baudrateBox->setCurrentIndex(0);//波特率默认选择下拉第一项：9600
 }
 
 ComTest::~ComTest()
@@ -71,42 +67,48 @@ void ComTest::on_searchButton_clicked()
 
 void ComTest::on_openButton_clicked()
 {
-    //serial = new QSerialPort();
-    serial->setPortName(ui->portNameBox->currentText());
+    QString portName = ui->portNameBox->currentText();
     if(ui->openButton->text()==QString("打开串口"))
     {
-
+        serial = new Win_QextSerialPort(portName,QextSerialBase::EventDriven);
         if(serial->open(QIODevice::ReadWrite))
         {
             qDebug()<<"open ok"<<endl;
             ui->openButton->setText(QString("关闭串口"));
             //设置波特率
-            serial->setBaudRate(ui->baudrateBox->currentText().toInt());
+            switch (ui->baudrateBox->currentIndex())
+            {
+            case 0:serial->setBaudRate(BAUD9600);break;
+            case 1:serial->setBaudRate(BAUD19200);break;
+            case 2:serial->setBaudRate(BAUD115200);break;
+            default: break;
+            }
             //设置数据位数
             switch(ui->dataBitsBox->currentIndex())
             {
-            case 8: serial->setDataBits(QSerialPort::Data8); break;
+            case 0: serial->setDataBits(DATA_8); break;
             default: break;
             }
             //设置奇偶校验
             switch(ui->ParityBox->currentIndex())
             {
-            case 0: serial->setParity(QSerialPort::NoParity); break;
+            case 0: serial->setParity(PAR_NONE); break;
             default: break;
             }
             //设置停止位
             switch(ui->stopBitsBox->currentIndex())
             {
-            case 1: serial->setStopBits(QSerialPort::OneStop); break;
-            case 2: serial->setStopBits(QSerialPort::TwoStop); break;
+            case 1: serial->setStopBits(STOP_1); break;
+            case 2: serial->setStopBits(STOP_2); break;
             default: break;
             }
             //设置流控制
-            serial->setFlowControl(QSerialPort::NoFlowControl);
+            serial->setFlowControl(FLOW_OFF);
+            //serial->waitForReadyRead(500);
+            //serial->setTimeout(500);//设置延时
             //串口设置完成，监听数据
-            //connect(serial,SIGNAL(readyRead()),this,SLOT(serialPort_readyRead()));
-            //connect(serial,SIGNAL(readyRead()),this,&ComTest::serialPort_readyRead);
-            connect(serial, &QSerialPort::readyRead, this, &ComTest::serialPort_readyRead);
+            connect(serial,SIGNAL(readyRead()),this,SLOT(serialPort_readyRead()));
+
             //下拉菜单控件失能
             ui->portNameBox->setEnabled(false);
             ui->baudrateBox->setEnabled(false);
@@ -117,24 +119,19 @@ void ComTest::on_openButton_clicked()
             ui->send_state->setEnabled(false);
 
             ui->openButton->setText(QString("关闭串口"));
+
             //发送按键使能
             ui->sendButton->setEnabled(true);//
         }
-
-
         else
         {
             qDebug()<<"open failed"<<endl;
-            //QMessageBox::about(NULL, "提示", "无法打开串口！");
             return;
         }
-
-
     }
     else
-    {
-        //关闭串口
-        serial->close();
+    {       
+        serial->close();//关闭串口
 
         //下拉菜单控件使能
         ui->portNameBox->setEnabled(true);
@@ -147,7 +144,7 @@ void ComTest::on_openButton_clicked()
 
         ui->openButton->setText(QString("打开串口"));
         //发送按键失能
-        ui->sendButton->setEnabled(false);//
+        ui->sendButton->setEnabled(false);
     }
 }
 

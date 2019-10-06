@@ -34,7 +34,6 @@ public:
     QwtPlot *qwtPlot;
     QPushButton *searchButton;
     QPushButton *sendButton;
-    QPushButton *pushButton_5;
     QPushButton *clearButton;
     QLabel *label_3;
     QLabel *label_4;
@@ -80,9 +79,6 @@ public:
         sendButton = new QPushButton(centralwidget);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));
         sendButton->setGeometry(QRect(330, 600, 321, 28));
-        pushButton_5 = new QPushButton(centralwidget);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(670, 290, 93, 28));
         clearButton = new QPushButton(centralwidget);
         clearButton->setObjectName(QString::fromUtf8("clearButton"));
         clearButton->setGeometry(QRect(20, 600, 301, 28));
@@ -184,15 +180,14 @@ public:
         openButton->setText(QCoreApplication::translate("ComTest", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
         searchButton->setText(QCoreApplication::translate("ComTest", "\346\243\200\346\265\213\344\270\262\345\217\243", nullptr));
         sendButton->setText(QCoreApplication::translate("ComTest", "\345\217\221\351\200\201\346\225\260\346\215\256", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("ComTest", "\345\274\200\345\247\213\346\216\245\346\224\266", nullptr));
         clearButton->setText(QCoreApplication::translate("ComTest", "\346\270\205\347\251\272\346\216\245\346\224\266", nullptr));
         label_3->setText(QCoreApplication::translate("ComTest", "\346\216\245\346\224\266\347\252\227\345\217\243", nullptr));
         label_4->setText(QCoreApplication::translate("ComTest", "\345\217\221\351\200\201\347\252\227\345\217\243", nullptr));
         label->setText(QCoreApplication::translate("ComTest", "\344\270\262\345\217\243\345\217\267 \357\274\232", nullptr));
         label_2->setText(QCoreApplication::translate("ComTest", "\346\263\242\347\211\271\347\216\207 \357\274\232", nullptr));
-        baudrateBox->setItemText(0, QCoreApplication::translate("ComTest", "115200", nullptr));
+        baudrateBox->setItemText(0, QCoreApplication::translate("ComTest", "9600", nullptr));
         baudrateBox->setItemText(1, QCoreApplication::translate("ComTest", "19200", nullptr));
-        baudrateBox->setItemText(2, QCoreApplication::translate("ComTest", "9600", nullptr));
+        baudrateBox->setItemText(2, QCoreApplication::translate("ComTest", "115200", nullptr));
 
         label_5->setText(QCoreApplication::translate("ComTest", "\346\225\260\346\215\256\344\275\215 \357\274\232", nullptr));
         dataBitsBox->setItemText(0, QCoreApplication::translate("ComTest", "8", nullptr));

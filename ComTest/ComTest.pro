@@ -18,10 +18,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    comtest.cpp
+    comtest.cpp \
+    qextserialbase.cpp \
+    qextserialport.cpp \
+    win_qextserialport.cpp
 
 HEADERS += \
-    comtest.h
+    comtest.h \
+    qextserialbase.h \
+    qextserialport.h \
+    win_qextserialport.h
 
 FORMS += \
     comtest.ui

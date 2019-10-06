@@ -48,13 +48,31 @@ OBJECTS_DIR   = release
 ####### Files
 
 SOURCES       = ..\ComTest\main.cpp \
-		..\ComTest\comtest.cpp release\moc_comtest.cpp
+		..\ComTest\comtest.cpp \
+		..\ComTest\qextserialbase.cpp \
+		..\ComTest\qextserialport.cpp \
+		..\ComTest\win_qextserialport.cpp release\moc_comtest.cpp \
+		release\moc_qextserialbase.cpp \
+		release\moc_qextserialport.cpp \
+		release\moc_win_qextserialport.cpp
 OBJECTS       = release\main.obj \
 		release\comtest.obj \
-		release\moc_comtest.obj
+		release\qextserialbase.obj \
+		release\qextserialport.obj \
+		release\win_qextserialport.obj \
+		release\moc_comtest.obj \
+		release\moc_qextserialbase.obj \
+		release\moc_qextserialport.obj \
+		release\moc_win_qextserialport.obj
 
-DIST          =  ..\ComTest\comtest.h ..\ComTest\main.cpp \
-		..\ComTest\comtest.cpp
+DIST          =  ..\ComTest\comtest.h \
+		..\ComTest\qextserialbase.h \
+		..\ComTest\qextserialport.h \
+		..\ComTest\win_qextserialport.h ..\ComTest\main.cpp \
+		..\ComTest\comtest.cpp \
+		..\ComTest\qextserialbase.cpp \
+		..\ComTest\qextserialport.cpp \
+		..\ComTest\win_qextserialport.cpp
 QMAKE_TARGET  = ComTest
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = ComTest.exe
@@ -131,7 +149,7 @@ all: Makefile.Release  release\ComTest.exe
 
 release\ComTest.exe: D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5PrintSupport.lib D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Widgets.lib D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Gui.lib D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5SerialPort.lib D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Core.lib D:\Qt\Qt5.13.1\5.13.1\msvc2017\lib\qtmain.lib ui_comtest.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-release\main.obj release\comtest.obj release\moc_comtest.obj
+release\main.obj release\comtest.obj release\qextserialbase.obj release\qextserialport.obj release\win_qextserialport.obj release\moc_comtest.obj release\moc_qextserialbase.obj release\moc_qextserialport.obj release\moc_win_qextserialport.obj
 $(LIBS)
 <<
 
@@ -141,10 +159,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) ComTest.zip $(SOURCES) $(DIST) ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\angle.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\windows-desktop.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\windows-vulkan.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-desktop.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\qconfig.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3danimation.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dcore.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dinput.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3drender.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axbase.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axserver.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_concurrent.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_core.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_core_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_dbus.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designer.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designer_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gamepad.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gui.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gui_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_help.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_help_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_location.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_location_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimedia.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_network.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_network_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_nfc.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_opengl.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioning.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_printsupport.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmltest.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_repparser.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_scxml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sensors.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialbus.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialport.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sql.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sql_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_svg.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_svg_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_testlib.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uitools.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webchannel.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_websockets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webview.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webview_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_widgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_winextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_functions.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_config.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32-msvc\qmake.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_post.prf .qmake.stash ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-version.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\toolchain.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\default_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\default_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\resolve_config.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds_post.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\default_post.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\build_pass.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qml_debug.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\precompile_header.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\warn_on.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\resources.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\moc.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\opengl.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\uic.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qmake_use.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\file_copies.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\windows.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\testcase_targets.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exceptions.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\yacc.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\lex.prf ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5PrintSupport.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Widgets.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Gui.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5SerialPort.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Core.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\qtmain.prl    ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\data\dummy.cpp ..\ComTest\comtest.h  ..\ComTest\main.cpp ..\ComTest\comtest.cpp ..\ComTest\comtest.ui    
+	$(ZIP) ComTest.zip $(SOURCES) $(DIST) ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\angle.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\windows-desktop.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\windows-vulkan.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-desktop.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\qconfig.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3danimation.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dcore.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dinput.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3drender.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axbase.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axserver.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_concurrent.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_core.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_core_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_dbus.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designer.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designer_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gamepad.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gui.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_gui_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_help.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_help_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_location.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_location_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimedia.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_network.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_network_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_nfc.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_opengl.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioning.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_printsupport.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmltest.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quick.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quick_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_repparser.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_scxml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sensors.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialbus.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialport.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sql.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_sql_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_svg.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_svg_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_testlib.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uitools.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webchannel.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_websockets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webview.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_webview_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_widgets.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_winextras.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xml.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xml_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_functions.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt_config.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\win32-msvc\qmake.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\spec_post.prf .qmake.stash ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\common\msvc-version.conf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\toolchain.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\default_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\default_pre.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\resolve_config.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exclusive_builds_post.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\default_post.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\build_pass.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qml_debug.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\precompile_header.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\warn_on.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qt.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\resources.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\moc.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\opengl.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\uic.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\qmake_use.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\file_copies.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\win32\windows.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\testcase_targets.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\exceptions.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\yacc.prf ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\lex.prf ..\ComTest\ComTest.pro ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5PrintSupport.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Widgets.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Gui.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5SerialPort.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\Qt5Core.prl ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\lib\qtmain.prl    ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\data\dummy.cpp ..\ComTest\comtest.h ..\ComTest\qextserialbase.h ..\ComTest\qextserialport.h ..\ComTest\win_qextserialport.h  ..\ComTest\main.cpp ..\ComTest\comtest.cpp ..\ComTest\qextserialbase.cpp ..\ComTest\qextserialport.cpp ..\ComTest\win_qextserialport.cpp ..\ComTest\comtest.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.obj release\comtest.obj release\moc_comtest.obj
+	-$(DEL_FILE) release\main.obj release\comtest.obj release\qextserialbase.obj release\qextserialport.obj release\win_qextserialport.obj release\moc_comtest.obj release\moc_qextserialbase.obj release\moc_qextserialport.obj release\moc_win_qextserialport.obj
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -169,9 +187,9 @@ compiler_moc_predefs_clean:
 release\moc_predefs.h: ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\data\dummy.cpp
 	cl -BxD:\Qt\Qt5.13.1\5.13.1\msvc2017\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
-compiler_moc_header_make_all: release\moc_comtest.cpp
+compiler_moc_header_make_all: release\moc_comtest.cpp release\moc_qextserialbase.cpp release\moc_qextserialport.cpp release\moc_win_qextserialport.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_comtest.cpp
+	-$(DEL_FILE) release\moc_comtest.cpp release\moc_qextserialbase.cpp release\moc_qextserialport.cpp release\moc_win_qextserialport.cpp
 release\moc_comtest.cpp: ..\ComTest\comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QMainWindow \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qmainwindow.h \
@@ -285,9 +303,212 @@ release\moc_comtest.cpp: ..\ComTest\comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportglobal.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\QSerialPortInfo \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMetaType \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
 		release\moc_predefs.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe
 	D:\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/ComTest/build-ComTest-Desktop_Qt_5_13_1_MSVC2017_32bit-Debug/release/moc_predefs.h -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/mkspecs/win32-msvc -ID:/ComTest/ComTest -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QTQwt -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtPrintSupport -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtWidgets -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtGui -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtANGLE -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtSerialPort -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtCore -I. -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"D:\Windows Kits\10\include\10.0.17763.0\ucrt" -I"D:\Windows Kits\10\include\10.0.17763.0\shared" -I"D:\Windows Kits\10\include\10.0.17763.0\um" -I"D:\Windows Kits\10\include\10.0.17763.0\winrt" -I"D:\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\ComTest\comtest.h -o release\moc_comtest.cpp
+
+release\moc_qextserialbase.cpp: ..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
+		release\moc_predefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe
+	D:\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/ComTest/build-ComTest-Desktop_Qt_5_13_1_MSVC2017_32bit-Debug/release/moc_predefs.h -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/mkspecs/win32-msvc -ID:/ComTest/ComTest -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QTQwt -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtPrintSupport -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtWidgets -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtGui -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtANGLE -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtSerialPort -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtCore -I. -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"D:\Windows Kits\10\include\10.0.17763.0\ucrt" -I"D:\Windows Kits\10\include\10.0.17763.0\shared" -I"D:\Windows Kits\10\include\10.0.17763.0\um" -I"D:\Windows Kits\10\include\10.0.17763.0\winrt" -I"D:\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\ComTest\qextserialbase.h -o release\moc_qextserialbase.cpp
+
+release\moc_qextserialport.cpp: ..\ComTest\qextserialport.h \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
+		release\moc_predefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe
+	D:\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/ComTest/build-ComTest-Desktop_Qt_5_13_1_MSVC2017_32bit-Debug/release/moc_predefs.h -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/mkspecs/win32-msvc -ID:/ComTest/ComTest -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QTQwt -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtPrintSupport -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtWidgets -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtGui -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtANGLE -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtSerialPort -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtCore -I. -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"D:\Windows Kits\10\include\10.0.17763.0\ucrt" -I"D:\Windows Kits\10\include\10.0.17763.0\shared" -I"D:\Windows Kits\10\include\10.0.17763.0\um" -I"D:\Windows Kits\10\include\10.0.17763.0\winrt" -I"D:\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\ComTest\qextserialport.h -o release\moc_qextserialport.cpp
+
+release\moc_win_qextserialport.cpp: ..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
+		release\moc_predefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe
+	D:\Qt\Qt5.13.1\5.13.1\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include D:/ComTest/build-ComTest-Desktop_Qt_5_13_1_MSVC2017_32bit-Debug/release/moc_predefs.h -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/mkspecs/win32-msvc -ID:/ComTest/ComTest -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QTQwt -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtPrintSupport -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtWidgets -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtGui -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtANGLE -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtSerialPort -ID:/Qt/Qt5.13.1/5.13.1/msvc2017/include/QtCore -I. -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"D:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"D:\Windows Kits\10\include\10.0.17763.0\ucrt" -I"D:\Windows Kits\10\include\10.0.17763.0\shared" -I"D:\Windows Kits\10\include\10.0.17763.0\um" -I"D:\Windows Kits\10\include\10.0.17763.0\winrt" -I"D:\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\ComTest\win_qextserialport.h -o release\moc_win_qextserialport.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -543,6 +764,14 @@ release\main.obj: ..\ComTest\main.cpp ..\ComTest\comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportglobal.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\QSerialPortInfo \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMetaType \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QApplication \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qapplication.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreapplication.h \
@@ -664,6 +893,14 @@ release\comtest.obj: ..\ComTest\comtest.cpp ..\ComTest\comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportglobal.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\QSerialPortInfo \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtSerialPort\qserialportinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMetaType \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex \
 		ui_comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QVariant \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QApplication \
@@ -673,27 +910,255 @@ release\comtest.obj: ..\ComTest\comtest.cpp ..\ComTest\comtest.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qdesktopwidget.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qguiapplication.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qinputmethod.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QComboBox \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qcombobox.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qvalidator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregularexpression.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qslider.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qframe.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QGridLayout \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QLabel \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qlabel.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QMenuBar \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qmenubar.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qmenu.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qaction.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qactiongroup.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QPushButton \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qpushbutton.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qabstractbutton.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QStatusBar \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qstatusbar.h \
-		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QTextBrowser \
-		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qtextbrowser.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QTextEdit \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qtextedit.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qabstractscrollarea.h \
-		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\qframe.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qtextdocument.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qtextoption.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qtextcursor.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qtextformat.h \
 		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qpen.h \
-		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QTextEdit \
-		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QWidget
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtWidgets\QWidget \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_plot.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_global.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_text.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_plot_dict.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_plot_item.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_legend_data.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_graphic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_null_paintdevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qpaintengine.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtGui\qpainter.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_scale_map.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_transform.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QTQwt\qwt_interval.h
+
+release\qextserialbase.obj: ..\ComTest\qextserialbase.cpp ..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex
+
+release\qextserialport.obj: ..\ComTest\qextserialport.cpp ..\ComTest\qextserialport.h \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex
+
+release\win_qextserialport.obj: ..\ComTest\win_qextserialport.cpp ..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QReadWriteLock \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qreadwritelock.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobal.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qconfig.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlogging.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qflags.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmutex.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnumeric.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qversiontagging.h \
+		..\ComTest\win_qextserialport.h \
+		..\ComTest\qextserialbase.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QIODevice \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiodevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qnamespace.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstring.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qchar.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qrefcount.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qarraydata.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringview.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qiterator.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpair.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvector.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qpoint.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringlist.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qregexp.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qmetatype.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QFile \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfile.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qfiledevice.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QThread \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\qthread.h \
+		..\..\Qt\Qt5.13.1\5.13.1\msvc2017\include\QtCore\QMutex
 
 release\moc_comtest.obj: release\moc_comtest.cpp 
+
+release\moc_qextserialbase.obj: release\moc_qextserialbase.cpp 
+
+release\moc_qextserialport.obj: release\moc_qextserialport.cpp 
+
+release\moc_win_qextserialport.obj: release\moc_win_qextserialport.cpp 
 
 ####### Install
 
