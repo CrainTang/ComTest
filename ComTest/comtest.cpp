@@ -53,6 +53,11 @@ void ComTest::serialPort_readyRead()
         buffer.clear();
 }
 
+void ComTest::Plot()
+{
+
+}
+
 
 void ComTest::on_searchButton_clicked()
 {

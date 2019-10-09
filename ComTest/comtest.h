@@ -33,6 +33,8 @@ private slots:
 
     void on_clearButton_clicked();
 
+    void Plot();
+
 
 private:
     Ui::ComTest *ui;
