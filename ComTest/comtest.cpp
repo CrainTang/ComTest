@@ -19,39 +19,29 @@ ComTest::~ComTest()
 
 void ComTest::serialPort_readyRead()
 {
-    /*qDebug()<<"start recv"<<endl;
-    //从接收缓冲区中读取数据
-    QByteArray buffer = serial.readAll();
-    //从界面中读取以前收到的数据
-    QString recv = ui->recvTextEdit->toPlainText();
-    recv += QString(buffer);
-    //清空以前的显示
-    ui->recvTextEdit->clear();
-    //重新显示
-    ui->recvTextEdit->append(recv);*/
-    //qDebug()<<"read";
-    //字符串或者十六进制接收
     qDebug()<<"start recv"<<endl;
-        QByteArray buffer;
-        buffer = serial->readAll();
-        if(!buffer.isEmpty())
+    QByteArray buffer;
+    buffer = serial->readAll();
+    if(!buffer.isEmpty())
+    {
+        QString str = ui->recvTextEdit->toPlainText();
+        if(ui->send_state->currentText() == "string")
         {
-            QString str = ui->recvTextEdit->toPlainText();
-            if(ui->send_state->currentText() == "string")
-            {
-                str = tr(buffer);
-                ui->recvTextEdit->append(str);
-            }
-            else
-            {
-               QByteArray temp = buffer.toHex().toUpper();
-               str = tr(temp);
-               ui->recvTextEdit->append(str);
-            }
+            str = tr(buffer);
+            ui->recvTextEdit->append(str);
         }
-        buffer.clear();
+        else
+        {
+            QByteArray temp = buffer.toHex().toUpper();
+            str = tr(temp);
+            ui->recvTextEdit->append(str);
+        }
+    }
+    buffer.clear();
 }
 
+
+//画图
 void ComTest::Plot()
 { 
     ui->qwtPlot->setAxisScale(QwtPlot::yLeft,0,100,5);
@@ -116,29 +106,29 @@ void ComTest::on_openButton_clicked()
             //设置波特率
             switch (ui->baudrateBox->currentIndex())
             {
-            case 0:serial->setBaudRate(BAUD9600);break;
-            case 1:serial->setBaudRate(BAUD19200);break;
-            case 2:serial->setBaudRate(BAUD115200);break;
-            default: break;
+                case 0:serial->setBaudRate(BAUD9600);break;
+                case 1:serial->setBaudRate(BAUD19200);break;
+                case 2:serial->setBaudRate(BAUD115200);break;
+                default: break;
             }
             //设置数据位数
             switch(ui->dataBitsBox->currentIndex())
             {
-            case 0: serial->setDataBits(DATA_8); break;
-            default: break;
+                case 0: serial->setDataBits(DATA_8); break;
+                default: break;
             }
             //设置奇偶校验
             switch(ui->ParityBox->currentIndex())
             {
-            case 0: serial->setParity(PAR_NONE); break;
-            default: break;
+                case 0: serial->setParity(PAR_NONE); break;
+                default: break;
             }
             //设置停止位
             switch(ui->stopBitsBox->currentIndex())
             {
-            case 1: serial->setStopBits(STOP_1); break;
-            case 2: serial->setStopBits(STOP_2); break;
-            default: break;
+                case 1: serial->setStopBits(STOP_1); break;
+                case 2: serial->setStopBits(STOP_2); break;
+                default: break;
             }
             //设置流控制
             serial->setFlowControl(FLOW_OFF);
@@ -189,20 +179,20 @@ void ComTest::on_sendButton_clicked()
 {
 
     QString str = ui->sendTextEdit->toPlainText();
-        if(!str.isEmpty())
+    if(!str.isEmpty())
+    {
+        if(ui->send_state->currentText() == "string")
         {
-            if(ui->send_state->currentText() == "string")
-            {
-                serial->write(str.toLatin1());
-            }
-            else
-            {
-                int num = str.toInt();
-                str = str.setNum(num, 16);
-                serial->write(str.toLatin1());
-            }
+            serial->write(str.toLatin1());
         }
-        qDebug()<<"send ok:"<<str<<endl;
+        else
+        {
+            int num = str.toInt();
+            str = str.setNum(num, 16);
+            serial->write(str.toLatin1());
+        }
+    }
+    qDebug()<<"send ok:"<<str<<endl;
 
 
 }
