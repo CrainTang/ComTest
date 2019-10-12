@@ -1,15 +1,14 @@
 #include "comtest.h"
 #include "ui_comtest.h"
-
 ComTest::ComTest(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::ComTest)
 {
     ui->setupUi(this);
     this->setWindowTitle("简易频谱仪");
-    ui->qwtPlot->setTitle("频谱");
     ui->sendButton->setEnabled(false);//发送按键失能
     ui->baudrateBox->setCurrentIndex(0);//波特率默认选择下拉第一项：9600
+    Plot();
 }
 
 ComTest::~ComTest()
@@ -31,7 +30,7 @@ void ComTest::serialPort_readyRead()
     //重新显示
     ui->recvTextEdit->append(recv);*/
     //qDebug()<<"read";
-        //字符串或者十六进制接收
+    //字符串或者十六进制接收
     qDebug()<<"start recv"<<endl;
         QByteArray buffer;
         buffer = serial->readAll();
@@ -54,8 +53,42 @@ void ComTest::serialPort_readyRead()
 }
 
 void ComTest::Plot()
-{
+{ 
+    ui->qwtPlot->setAxisScale(QwtPlot::yLeft,0,100,5);
+    ui->qwtPlot->setAxisScale(QwtPlot::xBottom,-5000,5000,1000);
+    ui->qwtPlot->setAxisTitle(QwtPlot::yLeft,"幅度");
+    ui->qwtPlot->setAxisTitle(QwtPlot::xBottom,"频率(kHz)");
 
+    QVector<QPointF> vector;
+    for(int i =-5000;i<5000;)
+    {
+        QPointF point;
+        point.setX(i);
+        double y = (i+5000)*0.01;
+        i = i + 10000000/1024;
+        //int y = 20*sin(i*M_PI/10) + 50;
+        point.setY(y);
+        vector.append(point);
+    }
+    //构造曲线数据
+    QwtPointSeriesData* series = new QwtPointSeriesData(vector);
+
+
+    QwtPlotCurve* curve1 = new QwtPlotCurve("Curve 1");
+    //设置数据
+    curve1->setData(series);
+    //把曲线附加到qwtPlot上
+    curve1->attach(ui->qwtPlot);
+    //设置画笔
+    curve1->setPen(QColor(0,0,255),2,Qt::SolidLine);
+    //加入网格
+    QwtPlotGrid* grid = new QwtPlotGrid();
+    grid->setPen(QColor(222,222,222),1);
+    grid->attach(ui->qwtPlot);
+    ui->qwtPlot->replot();
+    ui->qwtPlot->show();
+    //删除所画的图形
+    //curve1->detach();
 }
 
 
@@ -109,8 +142,7 @@ void ComTest::on_openButton_clicked()
             }
             //设置流控制
             serial->setFlowControl(FLOW_OFF);
-            //serial->waitForReadyRead(500);
-            //serial->setTimeout(500);//设置延时
+
             //串口设置完成，监听数据
             connect(serial,SIGNAL(readyRead()),this,SLOT(serialPort_readyRead()));
 
@@ -155,9 +187,7 @@ void ComTest::on_openButton_clicked()
 
 void ComTest::on_sendButton_clicked()
 {
-    //获取界面上的数据并转换成utf8格式的字节流
-//    QByteArray data = ui->sendTextEdit->toPlainText().toUtf8();
-//    serial.write(data);
+
     QString str = ui->sendTextEdit->toPlainText();
         if(!str.isEmpty())
         {
@@ -172,7 +202,7 @@ void ComTest::on_sendButton_clicked()
                 serial->write(str.toLatin1());
             }
         }
-        qDebug()<<"send ok"<<endl;
+        qDebug()<<"send ok:"<<str<<endl;
 
 
 }

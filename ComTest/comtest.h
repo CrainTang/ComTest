@@ -7,6 +7,10 @@
 #include <QSerialPortInfo>     // 提供系统中存在的串口的信息
 #include <QMetaType>
 #include "win_qextserialport.h"
+#include<qwt_plot_curve.h>
+#include<qwt_plot_grid.h>
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class ComTest; }//
 QT_END_NAMESPACE
@@ -38,8 +42,7 @@ private slots:
 
 private:
     Ui::ComTest *ui;
-    //QSerialPort *serial;
     Win_QextSerialPort *serial;
 
 };
-#endif // COMTEST_H
+#endif

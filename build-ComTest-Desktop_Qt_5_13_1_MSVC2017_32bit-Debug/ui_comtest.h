@@ -58,12 +58,12 @@ public:
     {
         if (ComTest->objectName().isEmpty())
             ComTest->setObjectName(QString::fromUtf8("ComTest"));
-        ComTest->resize(1155, 761);
+        ComTest->resize(1182, 709);
         centralwidget = new QWidget(ComTest);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         sendTextEdit = new QTextEdit(centralwidget);
         sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
-        sendTextEdit->setGeometry(QRect(20, 380, 631, 201));
+        sendTextEdit->setGeometry(QRect(20, 230, 721, 81));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(890, 330, 93, 28));
@@ -72,25 +72,25 @@ public:
         openButton->setGeometry(QRect(890, 290, 93, 28));
         qwtPlot = new QwtPlot(centralwidget);
         qwtPlot->setObjectName(QString::fromUtf8("qwtPlot"));
-        qwtPlot->setGeometry(QRect(700, 370, 400, 200));
+        qwtPlot->setGeometry(QRect(20, 360, 791, 281));
         searchButton = new QPushButton(centralwidget);
         searchButton->setObjectName(QString::fromUtf8("searchButton"));
         searchButton->setGeometry(QRect(1010, 290, 93, 28));
         sendButton = new QPushButton(centralwidget);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));
-        sendButton->setGeometry(QRect(330, 600, 321, 28));
+        sendButton->setGeometry(QRect(390, 320, 351, 28));
         clearButton = new QPushButton(centralwidget);
         clearButton->setObjectName(QString::fromUtf8("clearButton"));
-        clearButton->setGeometry(QRect(20, 600, 301, 28));
+        clearButton->setGeometry(QRect(20, 320, 361, 28));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(20, 30, 72, 15));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(20, 360, 72, 15));
+        label_4->setGeometry(QRect(20, 210, 72, 15));
         recvTextEdit = new QTextEdit(centralwidget);
         recvTextEdit->setObjectName(QString::fromUtf8("recvTextEdit"));
-        recvTextEdit->setGeometry(QRect(20, 50, 631, 301));
+        recvTextEdit->setGeometry(QRect(20, 50, 721, 151));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(900, 34, 164, 241));
@@ -162,7 +162,7 @@ public:
         ComTest->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ComTest);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1155, 26));
+        menubar->setGeometry(QRect(0, 0, 1182, 26));
         ComTest->setMenuBar(menubar);
         statusbar = new QStatusBar(ComTest);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
