@@ -218,15 +218,9 @@ void ComTest::on_pushButton_clicked()
 void ComTest::on_pushButton_2_clicked()
 {
     QString strbuf = ui->recvTextEdit->toPlainText();
-    //QString trim_n_z(strbuf);
     strbuf.replace("\n","");
     strbuf.replace("\t"," ");
     list1 =strbuf.split(" ");
     qDebug()<<list1[1023]<<endl;
-
-   // for(int i =0;i<1024;i++)
-   // {
-        //data[i]=databuf;
-   // }
     Plot();
 }

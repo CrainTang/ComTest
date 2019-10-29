@@ -28,17 +28,16 @@ class Ui_ComTest
 {
 public:
     QWidget *centralwidget;
-    QTextEdit *sendTextEdit;
-    QPushButton *pushButton;
-    QPushButton *openButton;
     QwtPlot *qwtPlot;
-    QPushButton *searchButton;
+    QWidget *widget;
+    QGridLayout *gridLayout_2;
     QPushButton *sendButton;
+    QTextEdit *sendTextEdit;
+    QTextEdit *recvTextEdit;
     QPushButton *clearButton;
     QLabel *label_3;
     QLabel *label_4;
-    QTextEdit *recvTextEdit;
-    QWidget *layoutWidget;
+    QWidget *widget1;
     QGridLayout *gridLayout;
     QLabel *label;
     QComboBox *portNameBox;
@@ -52,6 +51,9 @@ public:
     QComboBox *stopBitsBox;
     QLabel *label_8;
     QComboBox *send_state;
+    QPushButton *openButton;
+    QPushButton *searchButton;
+    QPushButton *pushButton;
     QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -63,58 +65,67 @@ public:
         ComTest->resize(1182, 709);
         centralwidget = new QWidget(ComTest);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        sendTextEdit = new QTextEdit(centralwidget);
-        sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
-        sendTextEdit->setGeometry(QRect(20, 230, 751, 41));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(890, 300, 93, 28));
-        openButton = new QPushButton(centralwidget);
-        openButton->setObjectName(QString::fromUtf8("openButton"));
-        openButton->setGeometry(QRect(890, 260, 93, 28));
         qwtPlot = new QwtPlot(centralwidget);
         qwtPlot->setObjectName(QString::fromUtf8("qwtPlot"));
-        qwtPlot->setGeometry(QRect(20, 360, 1141, 281));
-        searchButton = new QPushButton(centralwidget);
-        searchButton->setObjectName(QString::fromUtf8("searchButton"));
-        searchButton->setGeometry(QRect(990, 260, 93, 28));
-        sendButton = new QPushButton(centralwidget);
+        qwtPlot->setGeometry(QRect(20, 350, 1101, 291));
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(20, 30, 851, 301));
+        gridLayout_2 = new QGridLayout(widget);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        sendButton = new QPushButton(widget);
         sendButton->setObjectName(QString::fromUtf8("sendButton"));
-        sendButton->setGeometry(QRect(420, 280, 351, 28));
-        clearButton = new QPushButton(centralwidget);
-        clearButton->setObjectName(QString::fromUtf8("clearButton"));
-        clearButton->setGeometry(QRect(20, 280, 361, 28));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(20, 30, 72, 15));
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(20, 210, 72, 15));
-        recvTextEdit = new QTextEdit(centralwidget);
+
+        gridLayout_2->addWidget(sendButton, 2, 1, 1, 1);
+
+        sendTextEdit = new QTextEdit(widget);
+        sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
+
+        gridLayout_2->addWidget(sendTextEdit, 1, 1, 1, 1);
+
+        recvTextEdit = new QTextEdit(widget);
         recvTextEdit->setObjectName(QString::fromUtf8("recvTextEdit"));
-        recvTextEdit->setGeometry(QRect(20, 50, 751, 151));
-        layoutWidget = new QWidget(centralwidget);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(890, 35, 191, 221));
-        gridLayout = new QGridLayout(layoutWidget);
+
+        gridLayout_2->addWidget(recvTextEdit, 1, 0, 1, 1);
+
+        clearButton = new QPushButton(widget);
+        clearButton->setObjectName(QString::fromUtf8("clearButton"));
+
+        gridLayout_2->addWidget(clearButton, 2, 0, 1, 1);
+
+        label_3 = new QLabel(widget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        gridLayout_2->addWidget(label_3, 0, 0, 1, 1);
+
+        label_4 = new QLabel(widget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        gridLayout_2->addWidget(label_4, 0, 1, 1, 1);
+
+        widget1 = new QWidget(centralwidget);
+        widget1->setObjectName(QString::fromUtf8("widget1"));
+        widget1->setGeometry(QRect(890, 44, 195, 301));
+        gridLayout = new QGridLayout(widget1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(layoutWidget);
+        label = new QLabel(widget1);
         label->setObjectName(QString::fromUtf8("label"));
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        portNameBox = new QComboBox(layoutWidget);
+        portNameBox = new QComboBox(widget1);
         portNameBox->setObjectName(QString::fromUtf8("portNameBox"));
 
         gridLayout->addWidget(portNameBox, 0, 1, 1, 1);
 
-        label_2 = new QLabel(layoutWidget);
+        label_2 = new QLabel(widget1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         gridLayout->addWidget(label_2, 1, 0, 1, 1);
 
-        baudrateBox = new QComboBox(layoutWidget);
+        baudrateBox = new QComboBox(widget1);
         baudrateBox->addItem(QString());
         baudrateBox->addItem(QString());
         baudrateBox->addItem(QString());
@@ -122,55 +133,72 @@ public:
 
         gridLayout->addWidget(baudrateBox, 1, 1, 1, 1);
 
-        label_5 = new QLabel(layoutWidget);
+        label_5 = new QLabel(widget1);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         gridLayout->addWidget(label_5, 2, 0, 1, 1);
 
-        dataBitsBox = new QComboBox(layoutWidget);
+        dataBitsBox = new QComboBox(widget1);
         dataBitsBox->addItem(QString());
         dataBitsBox->setObjectName(QString::fromUtf8("dataBitsBox"));
 
         gridLayout->addWidget(dataBitsBox, 2, 1, 1, 1);
 
-        label_6 = new QLabel(layoutWidget);
+        label_6 = new QLabel(widget1);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
         gridLayout->addWidget(label_6, 3, 0, 1, 1);
 
-        ParityBox = new QComboBox(layoutWidget);
+        ParityBox = new QComboBox(widget1);
         ParityBox->addItem(QString());
         ParityBox->setObjectName(QString::fromUtf8("ParityBox"));
 
         gridLayout->addWidget(ParityBox, 3, 1, 1, 1);
 
-        label_7 = new QLabel(layoutWidget);
+        label_7 = new QLabel(widget1);
         label_7->setObjectName(QString::fromUtf8("label_7"));
 
         gridLayout->addWidget(label_7, 4, 0, 1, 1);
 
-        stopBitsBox = new QComboBox(layoutWidget);
+        stopBitsBox = new QComboBox(widget1);
         stopBitsBox->addItem(QString());
         stopBitsBox->addItem(QString());
         stopBitsBox->setObjectName(QString::fromUtf8("stopBitsBox"));
 
         gridLayout->addWidget(stopBitsBox, 4, 1, 1, 1);
 
-        label_8 = new QLabel(layoutWidget);
+        label_8 = new QLabel(widget1);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
         gridLayout->addWidget(label_8, 5, 0, 1, 1);
 
-        send_state = new QComboBox(layoutWidget);
+        send_state = new QComboBox(widget1);
         send_state->addItem(QString());
         send_state->addItem(QString());
         send_state->setObjectName(QString::fromUtf8("send_state"));
 
         gridLayout->addWidget(send_state, 5, 1, 1, 1);
 
-        pushButton_2 = new QPushButton(centralwidget);
+        openButton = new QPushButton(widget1);
+        openButton->setObjectName(QString::fromUtf8("openButton"));
+
+        gridLayout->addWidget(openButton, 6, 0, 1, 1);
+
+        searchButton = new QPushButton(widget1);
+        searchButton->setObjectName(QString::fromUtf8("searchButton"));
+
+        gridLayout->addWidget(searchButton, 6, 1, 1, 1);
+
+        pushButton = new QPushButton(widget1);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        gridLayout->addWidget(pushButton, 7, 0, 1, 1);
+
+        pushButton_2 = new QPushButton(widget1);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(990, 300, 93, 28));
+
+        gridLayout->addWidget(pushButton_2, 7, 1, 1, 1);
+
         ComTest->setCentralWidget(centralwidget);
         menubar = new QMenuBar(ComTest);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -188,9 +216,6 @@ public:
     void retranslateUi(QMainWindow *ComTest)
     {
         ComTest->setWindowTitle(QCoreApplication::translate("ComTest", "ComTest", nullptr));
-        pushButton->setText(QCoreApplication::translate("ComTest", "\351\200\200\345\207\272", nullptr));
-        openButton->setText(QCoreApplication::translate("ComTest", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
-        searchButton->setText(QCoreApplication::translate("ComTest", "\346\243\200\346\265\213\344\270\262\345\217\243", nullptr));
         sendButton->setText(QCoreApplication::translate("ComTest", "\345\217\221\351\200\201\346\225\260\346\215\256", nullptr));
         clearButton->setText(QCoreApplication::translate("ComTest", "\346\270\205\347\251\272\346\216\245\346\224\266", nullptr));
         label_3->setText(QCoreApplication::translate("ComTest", "\346\216\245\346\224\266\347\252\227\345\217\243", nullptr));
@@ -215,6 +240,9 @@ public:
         send_state->setItemText(0, QCoreApplication::translate("ComTest", "string", nullptr));
         send_state->setItemText(1, QCoreApplication::translate("ComTest", "hex", nullptr));
 
+        openButton->setText(QCoreApplication::translate("ComTest", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
+        searchButton->setText(QCoreApplication::translate("ComTest", "\346\243\200\346\265\213\344\270\262\345\217\243", nullptr));
+        pushButton->setText(QCoreApplication::translate("ComTest", "\351\200\200\345\207\272", nullptr));
         pushButton_2->setText(QCoreApplication::translate("ComTest", "\346\233\264\346\226\260", nullptr));
     } // retranslateUi
 

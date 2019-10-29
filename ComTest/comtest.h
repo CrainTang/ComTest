@@ -45,7 +45,6 @@ private slots:
 private:
     Ui::ComTest *ui;
     Win_QextSerialPort *serial;
-    //float data[1024];
     QStringList list1;
 
 };
