@@ -40,9 +40,13 @@ private slots:
     void Plot();
 
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::ComTest *ui;
     Win_QextSerialPort *serial;
+    //float data[1024];
+    QStringList list1;
 
 };
 #endif

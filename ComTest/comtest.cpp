@@ -8,7 +8,8 @@ ComTest::ComTest(QWidget *parent)
     this->setWindowTitle("简易频谱仪");
     ui->sendButton->setEnabled(false);//发送按键失能
     ui->baudrateBox->setCurrentIndex(0);//波特率默认选择下拉第一项：9600
-    Plot();
+    //Plot();
+
 }
 
 ComTest::~ComTest()
@@ -22,6 +23,7 @@ void ComTest::serialPort_readyRead()
     qDebug()<<"start recv"<<endl;
     QByteArray buffer;
     buffer = serial->readAll();
+    qDebug()<<buffer<<endl;
     if(!buffer.isEmpty())
     {
         QString str = ui->recvTextEdit->toPlainText();
@@ -44,22 +46,25 @@ void ComTest::serialPort_readyRead()
 //画图
 void ComTest::Plot()
 { 
+
     ui->qwtPlot->setAxisScale(QwtPlot::yLeft,0,100,5);
     ui->qwtPlot->setAxisScale(QwtPlot::xBottom,-5000,5000,1000);
     ui->qwtPlot->setAxisTitle(QwtPlot::yLeft,"幅度");
     ui->qwtPlot->setAxisTitle(QwtPlot::xBottom,"频率(kHz)");
 
     QVector<QPointF> vector;
-    for(int i =-5000;i<5000;)
+    for(int i =-512;i<512;i++)
     {
         QPointF point;
-        point.setX(i);
-        double y = (i+5000)*0.01;
-        i = i + 10000000/1024;
+        point.setX(i*10000/1024);
+        double y = list1[i+512].toDouble();
+        qDebug()<<y<<endl;
+        //i = i + 10000000/1024;
         //int y = 20*sin(i*M_PI/10) + 50;
         point.setY(y);
         vector.append(point);
     }
+
     //构造曲线数据
     QwtPointSeriesData* series = new QwtPointSeriesData(vector);
 
@@ -179,6 +184,8 @@ void ComTest::on_sendButton_clicked()
 {
 
     QString str = ui->sendTextEdit->toPlainText();
+    //QByteArray str11 = str.toLatin1();
+    //qDebug()<<str.toLatin1()<<endl;
     if(!str.isEmpty())
     {
         if(ui->send_state->currentText() == "string")
@@ -207,3 +214,19 @@ void ComTest::on_pushButton_clicked()
     this->close();
 }
 
+
+void ComTest::on_pushButton_2_clicked()
+{
+    QString strbuf = ui->recvTextEdit->toPlainText();
+    //QString trim_n_z(strbuf);
+    strbuf.replace("\n","");
+    strbuf.replace("\t"," ");
+    list1 =strbuf.split(" ");
+    qDebug()<<list1[1023]<<endl;
+
+   // for(int i =0;i<1024;i++)
+   // {
+        //data[i]=databuf;
+   // }
+    Plot();
+}

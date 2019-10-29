@@ -19,8 +19,8 @@
      <rect>
       <x>20</x>
       <y>230</y>
-      <width>721</width>
-      <height>81</height>
+      <width>751</width>
+      <height>41</height>
      </rect>
     </property>
    </widget>
@@ -28,7 +28,7 @@
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>330</y>
+      <y>300</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>890</x>
-      <y>290</y>
+      <y>260</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -55,7 +55,7 @@
      <rect>
       <x>20</x>
       <y>360</y>
-      <width>791</width>
+      <width>1141</width>
       <height>281</height>
      </rect>
     </property>
@@ -63,8 +63,8 @@
    <widget class="QPushButton" name="searchButton">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>290</y>
+      <x>990</x>
+      <y>260</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -76,8 +76,8 @@
    <widget class="QPushButton" name="sendButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>320</y>
+      <x>420</x>
+      <y>280</y>
       <width>351</width>
       <height>28</height>
      </rect>
@@ -90,7 +90,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>320</y>
+      <y>280</y>
       <width>361</width>
       <height>28</height>
      </rect>
@@ -130,7 +130,7 @@
      <rect>
       <x>20</x>
       <y>50</y>
-      <width>721</width>
+      <width>751</width>
       <height>151</height>
      </rect>
     </property>
@@ -138,10 +138,10 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>34</y>
-      <width>164</width>
-      <height>241</height>
+      <x>890</x>
+      <y>35</y>
+      <width>191</width>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -234,27 +234,41 @@
        </item>
       </widget>
      </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>数据类型：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QComboBox" name="send_state">
+       <item>
+        <property name="text">
+         <string>string</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>hex</string>
+        </property>
+       </item>
+      </widget>
+     </item>
     </layout>
    </widget>
-   <widget class="QComboBox" name="send_state">
+   <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>290</y>
-      <width>87</width>
-      <height>22</height>
+      <x>990</x>
+      <y>300</y>
+      <width>93</width>
+      <height>28</height>
      </rect>
     </property>
-    <item>
-     <property name="text">
-      <string>string</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>hex</string>
-     </property>
-    </item>
+    <property name="text">
+     <string>更新</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
